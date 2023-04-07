@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:video_book/constants/constant_values.dart';
-import 'package:video_book/screens/login_screen.dart';
+import 'package:video_book/screens/HomeScreen.dart';
+import 'package:video_book/screens/LoginScreen.dart';
 import 'package:video_book/screens/welcome_screen.dart';
 
 void main() {
@@ -14,8 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(initialRoute: "/", routes: {
-      ScreenRoutes.WELCOME_SCREEN: (context) => const WelcomeScreen(),
-      ScreenRoutes.LOGIN_SCREEN: (context) => const LoginScreen(),
+      ScreenRoutes.welcomeScreen: (context) => const WelcomeScreen(),
+      ScreenRoutes.loginScreen: (context) => const LoginScreen(),
+      ScreenRoutes.homeScreen: (context) => const HomeScreen(),
     });
   }
 }
@@ -102,5 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Future<FirebaseApp> initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    print("Firebase App Initialized!");
+
+    return firebaseApp;
   }
 }

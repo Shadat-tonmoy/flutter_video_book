@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "409341278029-94u5ff0b63h9kl8252v3mu0a24apnukj.apps.googleusercontent.com",
+          "client_id": "409341278029-loguhi1kdqa1ks4o6pv3h39olpn5hb8c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "409341278029-94u5ff0b63h9kl8252v3mu0a24apnukj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "409341278029-htitmihqrlkenejim4kead9mug4bso0q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.videoBook"
+              }
             }
           ]
         }

@@ -1,8 +1,13 @@
 import 'package:awesome_icons/awesome_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:video_book/constants/AppColors.dart';
 import 'package:video_book/constants/AppStrings.dart';
+import 'package:video_book/constants/constant_values.dart';
 import 'package:video_book/customWidgets/LoginOptionButton.dart';
+import 'package:video_book/helpers/AuthHelper.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,17 +32,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: AppColors.googleColor,
                   text: AppStrings.loginWithGoogle,
                   icon: FontAwesomeIcons.google,
-                  onPressedCallback: _loginWithGoogleCallback),
+                  onPressedCallback: () => _loginWithGoogleCallback(context)),
               LoginOptionButton(
                   color: AppColors.facebookColor,
                   text: AppStrings.loginWithFacebook,
                   icon: FontAwesomeIcons.facebookSquare,
-                  onPressedCallback: _loginWithGoogleCallback),
+                  onPressedCallback: _loginWithFacebookCallback),
               LoginOptionButton(
                   color: AppColors.linkedInColor,
                   text: AppStrings.loginWithLinkedIn,
                   icon: FontAwesomeIcons.linkedin,
-                  onPressedCallback: _loginWithGoogleCallback)
+                  onPressedCallback: _loginWithLinkedInCallback)
             ],
           ),
         ),
@@ -45,5 +50,22 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _loginWithGoogleCallback() {}
+  void _loginWithGoogleCallback(BuildContext context) async {
+    Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
+    /*print("Will start google sign in");
+    AuthHelper authHelper = AuthHelper(context);
+    FirebaseApp firebaseApp = await authHelper.initializeFirebase();
+    print("Firebase app initialized! ${firebaseApp}");
+    User? user = await authHelper.signInWithGoogle();
+    print("Logged in user : ${user}");*/
+
+  }
+
+  void _loginWithFacebookCallback() {
+
+  }
+
+  void _loginWithLinkedInCallback() {
+
+  }
 }

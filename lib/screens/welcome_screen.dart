@@ -16,7 +16,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, ScreenRoutes.LOGIN_SCREEN);
+      Navigator.pushReplacementNamed(context, ScreenRoutes.loginScreen);
     });
   }
   @override

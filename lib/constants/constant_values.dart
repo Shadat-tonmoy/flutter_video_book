@@ -1,5 +1,6 @@
 class ScreenRoutes
 {
-  static const String WELCOME_SCREEN = "/";
-  static const String LOGIN_SCREEN = "/login";
+  static const String welcomeScreen = "/";
+  static const String loginScreen = "/login";
+  static const String homeScreen = "/home";
 }
