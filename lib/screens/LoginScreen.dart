@@ -2,10 +2,8 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:video_book/constants/AppColors.dart';
 import 'package:video_book/constants/AppStrings.dart';
-import 'package:video_book/constants/constant_values.dart';
 import 'package:video_book/customWidgets/LoginOptionButton.dart';
 import 'package:video_book/helpers/AuthHelper.dart';
 
@@ -51,13 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _loginWithGoogleCallback(BuildContext context) async {
-    Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
-    /*print("Will start google sign in");
-    AuthHelper authHelper = AuthHelper(context);
-    FirebaseApp firebaseApp = await authHelper.initializeFirebase();
+    // Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
+    print("Will start google sign in");
+    FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
     print("Firebase app initialized! ${firebaseApp}");
-    User? user = await authHelper.signInWithGoogle();
-    print("Logged in user : ${user}");*/
+    User? user = await AuthHelper.signInWithGoogle();
+    print("Logged in user : ${user}");
 
   }
 

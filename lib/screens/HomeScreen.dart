@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _bottomNavScreens = <Widget>[
     const VideoListScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
 
   ];
 

@@ -2,19 +2,39 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:video_book/constants/AppStrings.dart';
+import 'package:video_book/models/AuthModels.dart';
 
 class AuthHelper {
-  BuildContext _context;
-
-  AuthHelper(this._context);
-
-  Future<FirebaseApp> initializeFirebase() async {
+  static Future<FirebaseApp> initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
     return firebaseApp;
   }
 
-  Future<User?> signInWithGoogle() async {
+  static Future<SignedInUser?> getSignedInUser(bool signIn) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    GoogleSignInAccount? googleSignInAccount = null;
+    if (signIn) {
+      googleSignInAccount = await googleSignIn.signIn();
+    } else {
+      googleSignInAccount = googleSignIn.currentUser;
+    }
+
+    if (googleSignInAccount != null) {
+      var signedInUser = SignedInUser(
+        userId: googleSignInAccount.id,
+          displayName:
+              googleSignInAccount.displayName ?? AppStrings.loggedInUser,
+          email: googleSignInAccount.email,
+          profileImageUrl: googleSignInAccount.photoUrl ?? "");
+      return signedInUser;
+    }
+    return null;
+  }
+
+  static Future<User?> signInWithGoogle() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
 
@@ -70,8 +90,6 @@ class AuthHelper {
       await FirebaseAuth.instance.signOut();
     } catch (e) {
       print(e);
-      ScaffoldMessenger.of(_context)
-          .showSnackBar(customSnackBar(content: "Error while signing out!"));
     }
   }
 }
