@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_book/helpers/CacheHelper.dart';
 
 import '../helpers/AuthHelper.dart';
 import '../models/AuthModels.dart';
@@ -67,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<SignedInUser?> _getSignedInUser() async {
-    var signedInUser = await AuthHelper.getSignedInUser(true);
+    var signedInUser = CacheHelper().getSignedInUser();
     print("SignedInUser : ${signedInUser}");
     return signedInUser;
   }

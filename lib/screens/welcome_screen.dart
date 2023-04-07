@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/helpers/CacheHelper.dart';
 
 import '../helpers/AuthHelper.dart';
 
@@ -42,6 +43,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
     print("Firebase app initialized! ${firebaseApp}");
     var signedInUser = await AuthHelper.getSignedInUser(true);
+    if(signedInUser != null){
+      var cacheHelper = CacheHelper();
+      cacheHelper.cacheSignedInUser(signedInUser);
+    }
     return signedInUser != null;
   }
 }
