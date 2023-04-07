@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "409341278029",
+    "project_id": "video-book-ed345",
+    "storage_bucket": "video-book-ed345.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409341278029:android:b8a648a042c8739b346904",
+        "android_client_info": {
+          "package_name": "com.example.video_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409341278029-94u5ff0b63h9kl8252v3mu0a24apnukj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyvBYt21SmzC7ZASY4gEu19cHZ1gg4pHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409341278029-94u5ff0b63h9kl8252v3mu0a24apnukj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
