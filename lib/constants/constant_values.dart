@@ -9,3 +9,7 @@ class Tags{
   static const String signedInUserKey = "signed_in_user";
   static const String isSignedInKey = "is_signed_in";
 }
+
+class Keys{
+  static const String youtubeAPIKey = "AIzaSyCHDqJkVGYlhmMwFTfjhXikv3zyFmUxogU";
+}
