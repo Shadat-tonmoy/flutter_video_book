@@ -14,6 +14,11 @@ class CacheHelper {
     pref.setString(Tags.signedInUserKey, json);
   }
 
+  void clearSignedInUser() async {
+    final pref = await _sharedPref;
+    pref.remove(Tags.signedInUserKey);
+  }
+
   Future<SignedInUser?> getSignedInUser() async {
     final pref = await _sharedPref;
     final json = pref.getString(Tags.signedInUserKey);
@@ -23,5 +28,21 @@ class CacheHelper {
       return signedInUser;
     }
     return null;
+  }
+
+
+  void cacheIsSignedIn(bool value) async {
+    final pref = await _sharedPref;
+    pref.setBool(Tags.isSignedInKey, value);
+  }
+
+  void clearIsSignedIn() async {
+    final pref = await _sharedPref;
+    pref.remove(Tags.isSignedInKey);
+  }
+
+  Future<bool> isSignedIn() async {
+    final pref = await _sharedPref;
+    return pref.getBool(Tags.isSignedInKey) ?? false;
   }
 }

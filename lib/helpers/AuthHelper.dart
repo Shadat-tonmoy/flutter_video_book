@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:video_book/constants/AppStrings.dart';
+import 'package:video_book/helpers/CacheHelper.dart';
 import 'package:video_book/models/AuthModels.dart';
 
 class AuthHelper {
+  static CacheHelper cacheHelper = CacheHelper();
+
   static Future<FirebaseApp> initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
@@ -24,7 +26,7 @@ class AuthHelper {
 
     if (googleSignInAccount != null) {
       var signedInUser = SignedInUser(
-        userId: googleSignInAccount.id,
+          userId: googleSignInAccount.id,
           displayName:
               googleSignInAccount.displayName ?? AppStrings.loggedInUser,
           email: googleSignInAccount.email,
@@ -57,7 +59,15 @@ class AuthHelper {
             await auth.signInWithCredential(credential);
 
         user = userCredential.user;
+        final signedInUser = await getSignedInUser(true);
+
+        if (signedInUser != null) {
+          cacheHelper.cacheIsSignedIn(true);
+          cacheHelper.cacheSignedInUser(signedInUser);
+        }
       } on FirebaseAuthException catch (e) {
+        cacheHelper.clearIsSignedIn();
+        cacheHelper.clearSignedInUser();
         print("Error while signing in : ${e}");
         if (e.code == 'account-exists-with-different-credential') {
           // handle the error here
@@ -66,20 +76,12 @@ class AuthHelper {
         }
       } catch (e) {
         // handle the error here
+        cacheHelper.clearIsSignedIn();
+        cacheHelper.clearSignedInUser();
       }
     }
 
     return user;
-  }
-
-  SnackBar customSnackBar({required String content}) {
-    return SnackBar(
-      backgroundColor: Colors.black,
-      content: Text(
-        content,
-        style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
-      ),
-    );
   }
 
   Future<void> signOut() async {

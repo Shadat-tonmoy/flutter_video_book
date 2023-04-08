@@ -18,19 +18,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
-      _moveToNextScreen();
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    Timer(const Duration(seconds: 2), () {
+      _moveToNextScreen(context);
+    });
     return Container(
         color: Colors.white,
         child: FlutterLogo(size: MediaQuery.of(context).size.height));
   }
 
-  void _moveToNextScreen() async {
+  void _moveToNextScreen(BuildContext context) async {
     var isLoggedIn = await _isLoggedInUser();
     if (isLoggedIn) {
       Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
@@ -40,13 +40,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   Future<bool> _isLoggedInUser() async {
-    FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
-    print("Firebase app initialized! ${firebaseApp}");
-    var signedInUser = await AuthHelper.getSignedInUser(true);
-    if(signedInUser != null){
-      var cacheHelper = CacheHelper();
-      cacheHelper.cacheSignedInUser(signedInUser);
-    }
-    return signedInUser != null;
+    return CacheHelper().isSignedIn();
   }
 }
