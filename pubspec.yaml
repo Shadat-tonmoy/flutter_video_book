@@ -48,6 +48,7 @@ dependencies:
   cached_network_image: ^3.2.3
   http: ^0.13.5
   youtube_player_flutter: ^8.1.2
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

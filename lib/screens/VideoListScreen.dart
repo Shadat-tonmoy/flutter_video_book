@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_book/customWidgets/ChannelInfoView.dart';
 import 'package:video_book/customWidgets/VideoItemVIew.dart';
+import 'package:video_book/customWidgets/VideoListLoadingView.dart';
 import 'package:video_book/helpers/NetworkHelper.dart';
 import 'package:video_book/helpers/UIHelper.dart';
 import 'package:video_book/models/YoutubeChannelInfo.dart';
@@ -39,7 +40,8 @@ class _VideoListScreenState extends State<VideoListScreen> {
       body: Column(
         children: [
           // if (_channelInfo != null) ChannelInfoView(channelInfo: _channelInfo!),
-          Expanded(
+          if(_isLoading) VideoListLoadingView()
+          else Expanded(
             child: ListView.builder(
               itemCount: _contentList.length,
               itemBuilder: (context, index) {
@@ -82,6 +84,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
       _contentList = UIHelper.getContentList(_channelInfo!, videoList);
     }
     print("Videos : ${_videoList?.videos.length}");
+    _isLoading = false;
     setState(() {});
   }
 }
