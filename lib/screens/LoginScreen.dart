@@ -7,6 +7,9 @@ import 'package:video_book/constants/AppStrings.dart';
 import 'package:video_book/customWidgets/LoginOptionButton.dart';
 import 'package:video_book/helpers/AuthHelper.dart';
 
+import '../constants/constant_values.dart';
+import '../helpers/UIHelper.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -49,20 +52,19 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _loginWithGoogleCallback(BuildContext context) async {
-    // Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
-    print("Will start google sign in");
     FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
-    print("Firebase app initialized! ${firebaseApp}");
+
     User? user = await AuthHelper.signInWithGoogle();
-    print("Logged in user : ${user}");
 
+    if (user != null) {
+      Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
+      UIHelper.showToast(AppStrings.signInSuccess);
+    } else {
+      UIHelper.showToast(AppStrings.signInFailed);
+    }
   }
 
-  void _loginWithFacebookCallback() {
+  void _loginWithFacebookCallback() {}
 
-  }
-
-  void _loginWithLinkedInCallback() {
-
-  }
+  void _loginWithLinkedInCallback() {}
 }

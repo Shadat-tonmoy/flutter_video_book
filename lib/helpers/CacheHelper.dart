@@ -7,14 +7,14 @@ import 'package:video_book/models/AuthModels.dart';
 class CacheHelper {
   final Future<SharedPreferences> _sharedPref = SharedPreferences.getInstance();
 
-  void cacheSignedInUser(SignedInUser signedInUser) async {
+  Future<void> cacheSignedInUser(SignedInUser signedInUser) async {
     final pref = await _sharedPref;
     final json = jsonEncode(signedInUser.toJson()).toString();
     print("cacheSignedInUser : json : ${json}");
     pref.setString(Tags.signedInUserKey, json);
   }
 
-  void clearSignedInUser() async {
+  Future<void> clearSignedInUser() async {
     final pref = await _sharedPref;
     pref.remove(Tags.signedInUserKey);
   }
@@ -31,12 +31,12 @@ class CacheHelper {
   }
 
 
-  void cacheIsSignedIn(bool value) async {
+  Future<void> cacheIsSignedIn(bool value) async {
     final pref = await _sharedPref;
     pref.setBool(Tags.isSignedInKey, value);
   }
 
-  void clearIsSignedIn() async {
+  Future<void> clearIsSignedIn() async {
     final pref = await _sharedPref;
     pref.remove(Tags.isSignedInKey);
   }

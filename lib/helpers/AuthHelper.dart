@@ -84,14 +84,16 @@ class AuthHelper {
     return user;
   }
 
-  Future<void> signOut() async {
+  static Future<bool> signOut() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
       await googleSignIn.signOut();
       await FirebaseAuth.instance.signOut();
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 }
