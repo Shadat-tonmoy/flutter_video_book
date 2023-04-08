@@ -9,6 +9,7 @@ class AppStrings{
   static const signInSuccess = "You are successfully signed in!";
   static const signInFailed = "Failed to sign in. PLease try again!";
   static const send = "Send";
+  static const commentBoxHint = "Type your comment here...";
 
 
 }

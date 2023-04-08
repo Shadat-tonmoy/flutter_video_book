@@ -16,7 +16,7 @@ class VideoListScreen extends StatefulWidget {
 
 class _VideoListScreenState extends State<VideoListScreen> {
   final VideoListScreenViewModel _viewModel = VideoListScreenViewModel();
-  VideoFetchResult _videoFetchResult = VideoFetchResult.progress;
+  OperationResult _videoFetchResult = OperationResult.progress;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
     return Scaffold(
       body: Column(
         children: [
-          if (_videoFetchResult == VideoFetchResult.progress)
+          if (_videoFetchResult == OperationResult.progress)
             const VideoListLoadingView()
           else
             Expanded(

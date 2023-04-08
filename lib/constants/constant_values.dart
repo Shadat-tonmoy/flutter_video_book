@@ -13,4 +13,12 @@ class Keys {
   static const String youtubeAPIKey = "AIzaSyCHDqJkVGYlhmMwFTfjhXikv3zyFmUxogU";
 }
 
-enum VideoFetchResult { none, success, failed, progress }
+enum OperationResult { none, success, failed, progress }
+
+class CommentDBPath {
+  static const String commentRoot = "comments";
+  static const String commentTextRoot = "text";
+  static const String commentSenderRoot = "sender";
+  static const String commentSenderPhotoRoot = "sender_photo_uri";
+  static const String commentTimeRoot = "timestamp";
+}

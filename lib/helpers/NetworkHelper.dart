@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:video_book/constants/constant_values.dart';
 import 'package:video_book/models/YoutubePlaylistInfo.dart';
@@ -38,11 +39,11 @@ class NetworkHelper {
   static Future<VideoList> getVideosList(
       {required String playlistId, required String pageToken}) async {
     Map<String, String> parameters = {
-      'part' : 'snippet',
-      'playlistId' : playlistId,
-      'maxResults' : '20',
-      'pageToken' : pageToken,
-      'key' : Keys.youtubeAPIKey
+      'part': 'snippet',
+      'playlistId': playlistId,
+      'maxResults': '20',
+      'pageToken': pageToken,
+      'key': Keys.youtubeAPIKey
     };
 
     Map<String, String> headers = {
@@ -56,6 +57,5 @@ class NetworkHelper {
     VideoList videoList = videoListFromJson(response.body);
 
     return videoList;
-
   }
 }

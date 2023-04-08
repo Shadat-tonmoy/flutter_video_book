@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_book/constants/AppStrings.dart';
 
 const sendButtonTextStyle = TextStyle(
   color: Colors.lightBlueAccent,
@@ -8,7 +9,7 @@ const sendButtonTextStyle = TextStyle(
 
 const messageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  hintText: 'Type your message here...',
+  hintText: AppStrings.commentBoxHint,
   border: InputBorder.none,
 );
 

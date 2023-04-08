@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_book/customWidgets/CommentStream.dart';
 import 'package:video_book/customWidgets/VideoCommentBox.dart';
 import 'package:video_book/models/YoutubePlaylistInfo.dart';
 import 'package:video_book/screens/videoDetails/VideoDetailsScreenViewModel.dart';
@@ -29,7 +30,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
   void _init() {
     _viewModel.initValueFromWidget(widget.videoItem);
     _playerController = YoutubePlayerController(
-        initialVideoId: _viewModel.getInitialVideoId(),
+        initialVideoId: _viewModel.geVideoId(),
         flags: const YoutubePlayerFlags(
             mute: false, autoPlay: true, hideThumbnail: true))
       ..addListener(_youtubePlayerListener);
@@ -48,6 +49,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
           YoutubePlayer(
             controller: _playerController!,
           ),
+          CommentStream(),
           VideoCommentBox(onCommentSend: _onCommentSend),
         ],
       ),

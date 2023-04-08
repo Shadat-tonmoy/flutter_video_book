@@ -19,14 +19,14 @@ class VideoListScreenViewModel {
     contentList = [];
   }
 
-  Future<VideoFetchResult> fetchVideoData() async {
+  Future<OperationResult> fetchVideoData() async {
     try {
       await _fetchChannelInfo();
       await _fetchVideoList();
-      return VideoFetchResult.success;
+      return OperationResult.success;
     } catch (exception) {
       print("Exception in fetchVideoData : ${exception}");
-      return VideoFetchResult.failed;
+      return OperationResult.failed;
     }
   }
 
