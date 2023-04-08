@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:video_book/constants/Styles.dart';
 import 'package:video_book/constants/constant_values.dart';
-import 'package:video_book/screens/HomeScreen.dart';
-import 'package:video_book/screens/LoginScreen.dart';
-import 'package:video_book/screens/welcome_screen.dart';
+import 'package:video_book/screens/home/HomeScreen.dart';
+import 'package:video_book/screens/login/LoginScreen.dart';
+import 'package:video_book/screens/welcome/WelomeScreen.dart';
 
 import 'helpers/AuthHelper.dart';
 
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       initialRoute: "/",
       routes: {
-        ScreenRoutes.welcomeScreen: (context) => const WelcomeScreen(),
+        ScreenRoutes.welcomeScreen: (context) => WelcomeScreen(),
         ScreenRoutes.loginScreen: (context) => const LoginScreen(),
         ScreenRoutes.homeScreen: (context) => const HomeScreen(),
       },

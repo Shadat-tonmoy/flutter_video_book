@@ -7,8 +7,8 @@ import 'package:video_book/constants/AppStrings.dart';
 import 'package:video_book/customWidgets/LoginOptionButton.dart';
 import 'package:video_book/helpers/AuthHelper.dart';
 
-import '../constants/constant_values.dart';
-import '../helpers/UIHelper.dart';
+import '../../constants/constant_values.dart';
+import '../../helpers/UIHelper.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
