@@ -1,9 +1,22 @@
 import 'dart:convert';
 
-VideoList videoListFromJson(String str) =>
-    VideoList.fromJson(json.decode(str));
+import 'package:video_book/models/YoutubeChannelInfo.dart';
+
+VideoList videoListFromJson(String str) => VideoList.fromJson(json.decode(str));
 
 String videoListToJson(VideoList data) => json.encode(data.toJson());
+
+class ContentContainer {
+  ChannelInfo? channelInfo;
+
+  VideoItem? videoItem;
+
+  ContentContainer({this.channelInfo, this.videoItem});
+
+  bool isChannelInfo() => channelInfo != null;
+
+  bool isVideoItem() => videoItem != null;
+}
 
 class VideoList {
   VideoList({
@@ -24,7 +37,8 @@ class VideoList {
         kind: json["kind"],
         etag: json["etag"],
         nextPageToken: json["nextPageToken"],
-        videos: List<VideoItem>.from(json["items"].map((x) => VideoItem.fromJson(x))),
+        videos: List<VideoItem>.from(
+            json["items"].map((x) => VideoItem.fromJson(x))),
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
       );
 
@@ -42,26 +56,26 @@ class VideoItem {
     required this.kind,
     required this.etag,
     required this.id,
-    required this.snippet,
+    required this.videoInfo,
   });
 
   String kind;
   String etag;
   String id;
-  Video snippet;
+  Video videoInfo;
 
   factory VideoItem.fromJson(Map<String, dynamic> json) => VideoItem(
         kind: json["kind"],
         etag: json["etag"],
         id: json["id"],
-        snippet: Video.fromJson(json["snippet"]),
+        videoInfo: Video.fromJson(json["snippet"]),
       );
 
   Map<String, dynamic> toJson() => {
         "kind": kind,
         "etag": etag,
         "id": id,
-        "snippet": snippet.toJson(),
+        "snippet": videoInfo.toJson(),
       };
 }
 
