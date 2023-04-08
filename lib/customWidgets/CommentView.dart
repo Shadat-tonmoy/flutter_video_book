@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_text/flutter_expandable_text.dart';
+import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/helpers/UIHelper.dart';
 import 'package:video_book/models/CommentModel.dart';
 
 class CommentView extends StatelessWidget {
@@ -25,9 +27,29 @@ class CommentView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
-              Text(comment.userName,
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.w500)),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    UIHelper.getLimitedCharsText(comment.userName),
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    UIHelper.getFormattedTime(comment.timeStamp),
+                    style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500),
+                  )
+                ],
+              ),
               Container(
                 constraints: BoxConstraints(maxWidth: maxWidth),
                 child: ExpandableText(

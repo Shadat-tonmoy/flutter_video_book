@@ -7,31 +7,23 @@ import '../constants/constant_values.dart';
 
 class CommentStream extends StatelessWidget {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  final String videoId;
+
+  CommentStream({required this.videoId});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: fireStore
+          .collection(CommentDBPath.videoDataRoot)
+          .doc(videoId)
           .collection(CommentDBPath.commentRoot)
-          // .orderBy(CommentDBPath.commentTimeRoot, descending: true)
+          .orderBy(CommentDBPath.commentTimeRoot, descending: true)
           .snapshots(),
       builder: (context, snapshot) {
         print("Snapshot : ${snapshot.data?.docs.length}");
         if (snapshot.hasData) {
           final comments = snapshot.data?.docs ?? [];
-          /*for (var comment in comments) {
-            print("Total Comment ${comment.data}");
-          }
-          List<Widget> commentWidgets = [];
-          for (var comment in comments) {
-            final commentData = comment.data();
-            Comment commentModel = Comment.fromJson(commentData);
-            print("Comment : ${commentModel}");
-            commentWidgets.add(CommentView(comment: commentModel));
-            */ /*var text = comment.data[CommentDBPath.commentTextRoot];
-            var sender = message.data[CommentDBPath.commentSenderRoot];
-            messageWidgets.add(MessageBubble(text: text, sender: sender));*/ /*
-          }*/
           return Expanded(
             child: ListView.builder(
                 itemCount: comments.length,
@@ -41,8 +33,9 @@ class CommentStream extends StatelessWidget {
                   return CommentView(comment: commentModel);
                 }),
           );
-        } else
-          return Text("No Recent Chats");
+        } else {
+          return Expanded(child: Text("No Recent Comments"));
+        }
       },
     );
   }

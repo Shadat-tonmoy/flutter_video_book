@@ -30,7 +30,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
   void _init() {
     _viewModel.initValueFromWidget(widget.videoItem);
     _playerController = YoutubePlayerController(
-        initialVideoId: _viewModel.geVideoId(),
+        initialVideoId: _viewModel.getVideoId(),
         flags: const YoutubePlayerFlags(
             mute: false, autoPlay: true, hideThumbnail: true))
       ..addListener(_youtubePlayerListener);
@@ -49,7 +49,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
           YoutubePlayer(
             controller: _playerController!,
           ),
-          CommentStream(),
+          CommentStream(videoId: _viewModel.getVideoId()),
           VideoCommentBox(onCommentSend: _onCommentSend),
         ],
       ),
@@ -58,6 +58,7 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
 
   void _onCommentSend(String text) {
     print("WIll send comment to firebase as : ${text}");
+    _viewModel.sendCommentToFireStore(text);
   }
 
   @override

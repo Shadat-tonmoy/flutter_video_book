@@ -16,9 +16,14 @@ class Keys {
 enum OperationResult { none, success, failed, progress }
 
 class CommentDBPath {
+  static const String videoDataRoot = "video_data";
   static const String commentRoot = "comments";
   static const String commentTextRoot = "text";
   static const String commentSenderRoot = "sender";
   static const String commentSenderPhotoRoot = "sender_photo_uri";
-  static const String commentTimeRoot = "timestamp";
+  static const String commentTimeRoot = "commentTime";
+}
+
+class Consts{
+  static const int userNameLength = 16;
 }

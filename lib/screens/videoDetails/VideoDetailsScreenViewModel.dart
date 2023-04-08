@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_book/helpers/CacheHelper.dart';
+import 'package:video_book/models/CommentModel.dart';
 
 import '../../constants/constant_values.dart';
 import '../../models/YoutubePlaylistInfo.dart';
@@ -15,7 +16,7 @@ class VideoDetailsScreenViewModel {
     _videoItem = videoItem;
   }
 
-  String geVideoId() {
+  String getVideoId() {
     return _videoItem?.videoInfo.resourceId.videoId ?? "";
   }
 
@@ -23,19 +24,22 @@ class VideoDetailsScreenViewModel {
     return _videoItem?.videoInfo.title ?? "";
   }
 
-  Future<OperationResult> sendCommentToFireStore(String comment) async {
+  Future<OperationResult> sendCommentToFireStore(String commentText) async {
     try {
       final signedInUser = await cacheHelper.getSignedInUser();
       if (signedInUser != null) {
-        final videoId = geVideoId();
+        final videoId = getVideoId();
+        final comment = Comment(
+            commentText: commentText,
+            userName: signedInUser.displayName,
+            userProfileImageUrl: signedInUser.profileImageUrl,
+            timeStamp: Timestamp.now().millisecondsSinceEpoch);
         final result = await fireStore
-            .collection(CommentDBPath.commentRoot)
+            .collection(CommentDBPath.videoDataRoot)
             .doc(videoId)
-            .collection("")
-            .add(getCommentForDB(
-                comment: comment,
-                senderName: signedInUser.displayName,
-                senderPhotoUri: signedInUser.profileImageUrl));
+            .collection(CommentDBPath.commentRoot)
+            .add(comment.toJson());
+        print("PushComment result : $result, for videoId : ${videoId}");
         return OperationResult.success;
       }
     } catch (exception) {
@@ -43,17 +47,5 @@ class VideoDetailsScreenViewModel {
       return OperationResult.failed;
     }
     return OperationResult.failed;
-  }
-
-  Map<String, dynamic> getCommentForDB(
-      {required String comment,
-      required String senderName,
-      required String senderPhotoUri}) {
-    return {
-      CommentDBPath.commentTextRoot: comment,
-      CommentDBPath.commentSenderRoot: senderName,
-      CommentDBPath.commentSenderPhotoRoot: senderPhotoUri,
-      CommentDBPath.commentTimeRoot: Timestamp.now().millisecondsSinceEpoch,
-    };
   }
 }
