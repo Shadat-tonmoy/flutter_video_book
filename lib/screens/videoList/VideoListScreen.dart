@@ -3,6 +3,8 @@ import 'package:video_book/constants/constant_values.dart';
 import 'package:video_book/customWidgets/ChannelInfoView.dart';
 import 'package:video_book/customWidgets/VideoItemVIew.dart';
 import 'package:video_book/customWidgets/VideoListLoadingView.dart';
+import 'package:video_book/models/YoutubePlaylistInfo.dart';
+import 'package:video_book/screens/videoDetails/VideoDetailsScreen.dart';
 import 'package:video_book/screens/videoList/VideoListScreenViewModel.dart';
 
 class VideoListScreen extends StatefulWidget {
@@ -44,7 +46,10 @@ class _VideoListScreenState extends State<VideoListScreen> {
                     return ChannelInfoView(
                         channelInfo: itemContent.channelInfo!);
                   } else if (itemContent.isVideoItem()) {
-                    return VideoItemView(item: itemContent.videoItem!);
+                    return VideoItemView(
+                        index: index,
+                        item: itemContent.videoItem!,
+                        onTapListener: _videoItemTapListener);
                   }
                 },
               ),
@@ -52,6 +57,13 @@ class _VideoListScreenState extends State<VideoListScreen> {
         ],
       ),
     );
+  }
+
+  void _videoItemTapListener(int index, VideoItem videoItem) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => VideoDetailsScreen(videoItem: videoItem)));
+    print(
+        "Will show details of ${videoItem.id}, title : ${videoItem.videoInfo.title}");
   }
 
   void _fetchVideoData() async {
