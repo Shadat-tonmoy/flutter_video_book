@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:video_book/customWidgets/VideoCommentBox.dart';
 import 'package:video_book/models/YoutubePlaylistInfo.dart';
 import 'package:video_book/screens/videoDetails/VideoDetailsScreenViewModel.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../../constants/Styles.dart';
 
 class VideoDetailsScreen extends StatefulWidget {
   final VideoItem videoItem;
@@ -40,11 +43,19 @@ class _VideoDetailsScreenState extends State<VideoDetailsScreen> {
       appBar: AppBar(
         title: Text(_viewModel.getVideoTitle()),
       ),
-      body: Container(
-          child: YoutubePlayer(
-        controller: _playerController!,
-      )),
+      body: Column(
+        children: [
+          YoutubePlayer(
+            controller: _playerController!,
+          ),
+          VideoCommentBox(onCommentSend: _onCommentSend),
+        ],
+      ),
     );
+  }
+
+  void _onCommentSend(String text) {
+    print("WIll send comment to firebase as : ${text}");
   }
 
   @override
