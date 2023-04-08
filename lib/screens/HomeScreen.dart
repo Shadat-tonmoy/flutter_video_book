@@ -2,7 +2,7 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:video_book/screens/ProfileScreen.dart';
 
-import 'VideoListScreen.dart';
+import 'videoList/VideoListScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/customWidgets/ChannelInfoView.dart';
+import 'package:video_book/customWidgets/VideoItemVIew.dart';
+import 'package:video_book/customWidgets/VideoListLoadingView.dart';
+import 'package:video_book/screens/videoList/VideoListScreenViewModel.dart';
+
+class VideoListScreen extends StatefulWidget {
+  const VideoListScreen({Key? key}) : super(key: key);
+
+  @override
+  State<VideoListScreen> createState() => _VideoListScreenState();
+}
+
+class _VideoListScreenState extends State<VideoListScreen> {
+  final VideoListScreenViewModel _viewModel = VideoListScreenViewModel();
+  VideoFetchResult _videoFetchResult = VideoFetchResult.progress;
+
+  @override
+  void initState() {
+    super.initState();
+    _initValues();
+    _fetchVideoData();
+  }
+
+  void _initValues() {
+    _viewModel.initValues();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          if (_videoFetchResult == VideoFetchResult.progress)
+            const VideoListLoadingView()
+          else
+            Expanded(
+              child: ListView.builder(
+                itemCount: _viewModel.contentList.length,
+                itemBuilder: (context, index) {
+                  final itemContent = _viewModel.contentList[index];
+                  if (itemContent.isChannelInfo()) {
+                    return ChannelInfoView(
+                        channelInfo: itemContent.channelInfo!);
+                  } else if (itemContent.isVideoItem()) {
+                    return VideoItemView(item: itemContent.videoItem!);
+                  }
+                },
+              ),
+            )
+        ],
+      ),
+    );
+  }
+
+  void _fetchVideoData() async {
+    var result = await _viewModel.fetchVideoData();
+    setState(() {
+      _videoFetchResult = result;
+    });
+  }
+}
