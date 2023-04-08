@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:video_book/constants/AppColors.dart';
@@ -40,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Column(
         children: [
           Card(
+            margin: EdgeInsets.all(8.0),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -48,8 +50,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(signedInUser?.profileImageUrl ?? ""),
+                        backgroundImage: CachedNetworkImageProvider(
+                            signedInUser?.profileImageUrl ?? ""),
                         radius: 40,
                       ),
                       SizedBox(

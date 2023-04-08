@@ -45,6 +45,7 @@ dependencies:
   flutter_progress_hud: ^2.0.2
   shared_preferences: ^2.1.0
   fluttertoast: ^8.2.1
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
