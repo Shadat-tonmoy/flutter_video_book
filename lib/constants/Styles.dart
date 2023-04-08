@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:video_book/constants/AppStrings.dart';
 
-const sendButtonTextStyle = TextStyle(
-  color: Colors.lightBlueAccent,
+final sendButtonTextStyle = TextStyle(
+  color: ThemeData().primaryColor,
   fontWeight: FontWeight.bold,
   fontSize: 18.0,
 );
@@ -13,25 +13,38 @@ const messageTextFieldDecoration = InputDecoration(
   border: InputBorder.none,
 );
 
-const messageContainerDecoration = BoxDecoration(
+final messageContainerDecoration = BoxDecoration(
   border: Border(
-    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    top: BorderSide(color: ThemeData().primaryColor, width: 2.0),
   ),
 );
 
-const inputFieldDecoration = InputDecoration(
-  hintText: 'Enter a value',
-  hintStyle: TextStyle(color: Colors.grey),
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-);
+class AppThemes {
+  static ThemeData getDarkTheme() {
+    ThemeData darkTheme = ThemeData.dark().copyWith(
+        colorScheme: const ColorScheme.dark().copyWith(
+            secondary: Colors.blue,
+            primary: Colors.blue,
+            onPrimary: Colors.white,
+            onSecondary: Colors.white),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blue,
+        ));
+
+    return darkTheme;
+  }
+
+  static ThemeData getLightTheme() {
+    ThemeData lightTheme = ThemeData.light().copyWith(
+        colorScheme: const ColorScheme.light().copyWith(
+            secondary: Colors.blue,
+            primary: Colors.blue,
+            onPrimary: Colors.white,
+            onSecondary: Colors.white),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.blue,
+        ));
+
+    return lightTheme;
+  }
+}

@@ -10,6 +10,7 @@ class VideoCommentBox extends StatelessWidget {
       TextEditingController();
   final Function onCommentSend;
   var _message = "";
+  final ThemeData themeData = ThemeData();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class VideoCommentBox extends StatelessWidget {
                 _message = value;
               },
               decoration: messageTextFieldDecoration,
-              style: TextStyle(color: Colors.grey[800]),
+              style: TextStyle(color: themeData.colorScheme.onPrimary),
             ),
           ),
           MaterialButton(
@@ -33,8 +34,8 @@ class VideoCommentBox extends StatelessWidget {
               messageTextEditingController.clear();
               onCommentSend(_message);
             },
-            child: const Text(
-              AppStrings.send,
+            child: Text(
+              AppStrings.post,
               style: sendButtonTextStyle,
             ),
           ),

@@ -56,6 +56,7 @@ class CommentView extends StatelessWidget {
                   comment.commentText,
                   trim: 100,
                   trimType: TrimType.characters,
+                  style: TextStyle(color: ThemeData().colorScheme.onPrimary),
                 ),
               ),
             ],

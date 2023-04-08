@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:video_book/constants/Styles.dart';
 import 'package:video_book/constants/constant_values.dart';
 import 'package:video_book/screens/HomeScreen.dart';
 import 'package:video_book/screens/LoginScreen.dart';
@@ -19,7 +20,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -29,13 +29,18 @@ class _MyAppState extends State<MyApp> {
   void initFirebase() async {
     FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
   }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(initialRoute: "/", routes: {
-      ScreenRoutes.welcomeScreen: (context) => const WelcomeScreen(),
-      ScreenRoutes.loginScreen: (context) => const LoginScreen(),
-      ScreenRoutes.homeScreen: (context) => const HomeScreen(),
-    });
+    return MaterialApp(
+      initialRoute: "/",
+      routes: {
+        ScreenRoutes.welcomeScreen: (context) => const WelcomeScreen(),
+        ScreenRoutes.loginScreen: (context) => const LoginScreen(),
+        ScreenRoutes.homeScreen: (context) => const HomeScreen(),
+      },
+      theme: AppThemes.getDarkTheme(),
+    );
   }
 }
