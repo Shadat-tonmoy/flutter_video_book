@@ -20,6 +20,17 @@ final messageContainerDecoration = BoxDecoration(
 );
 
 class AppThemes {
+  static const int themeLight = 1;
+  static const int themeDark = 2;
+
+  static ThemeData getThemeFromSettings(int value) {
+    if (value == themeLight) {
+      return getLightTheme();
+    } else {
+      return getDarkTheme();
+    }
+  }
+
   static ThemeData getDarkTheme() {
     ThemeData darkTheme = ThemeData.dark().copyWith(
         colorScheme: const ColorScheme.dark().copyWith(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:video_book/constants/Styles.dart';
 import 'package:video_book/constants/constant_values.dart';
 import 'package:video_book/models/AuthModels.dart';
 
@@ -30,7 +31,6 @@ class CacheHelper {
     return null;
   }
 
-
   Future<void> cacheIsSignedIn(bool value) async {
     final pref = await _sharedPref;
     pref.setBool(Tags.isSignedInKey, value);
@@ -44,5 +44,15 @@ class CacheHelper {
   Future<bool> isSignedIn() async {
     final pref = await _sharedPref;
     return pref.getBool(Tags.isSignedInKey) ?? false;
+  }
+
+  Future<void> cacheAppTheme(int value) async {
+    final pref = await _sharedPref;
+    pref.setInt(Tags.appThemeKey, value);
+  }
+
+  Future<int> getAppTheme() async {
+    final pref = await _sharedPref;
+    return pref.getInt(Tags.appThemeKey) ?? AppThemes.themeDark;
   }
 }

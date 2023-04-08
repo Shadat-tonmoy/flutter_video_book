@@ -7,6 +7,7 @@ class ScreenRoutes {
 class Tags {
   static const String signedInUserKey = "signed_in_user";
   static const String isSignedInKey = "is_signed_in";
+  static const String appThemeKey = "app_theme";
 }
 
 class Keys {

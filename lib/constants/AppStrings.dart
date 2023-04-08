@@ -10,6 +10,13 @@ class AppStrings{
   static const signInFailed = "Failed to sign in. PLease try again!";
   static const post = "POST";
   static const commentBoxHint = "Type your comment here...";
+  static const settings = "Settings";
+  static const appTheme = "App Theme";
+  static const aboutApp = "About App";
+  static const light = "Light";
+  static const dark = "Dark";
+  static const setAppTheme = "Dark";
+  static const themeUpdatedMessage = "Theme is updated. Please restart the app.";
 
 
 }
