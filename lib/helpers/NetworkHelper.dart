@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/models/YoutubePlaylistInfo.dart';
 
 import '../models/YoutubeChannelInfo.dart';
 
@@ -32,7 +33,29 @@ class NetworkHelper {
     print("Response : ${response.body}");
     ChannelInfo channelInfo = channelInfoFromJson(response.body);
     return channelInfo;
+  }
 
+  static Future<VideoList> getVideosList(
+      {required String playlistId, required String pageToken}) async {
+    Map<String, String> parameters = {
+      'part' : 'snippet',
+      'playlistId' : playlistId,
+      'maxResults' : '20',
+      'pageToken' : pageToken,
+      'key' : Keys.youtubeAPIKey
+    };
+
+    Map<String, String> headers = {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    };
+
+    Uri uri = Uri.https(baseURL, '/youtube/v3/playlistItems', parameters);
+
+    http.Response response = await http.get(uri, headers: headers);
+    print("Response : ${response.body}");
+    VideoList videoList = videoListFromJson(response.body);
+
+    return videoList;
 
   }
 }
