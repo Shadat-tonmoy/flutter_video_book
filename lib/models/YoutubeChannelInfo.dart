@@ -1,3 +1,5 @@
+
+
 import 'dart:convert';
 
 ChannelInfo channelInfoFromJson(String str) => ChannelInfo.fromJson(json.decode(str));
@@ -12,10 +14,10 @@ class ChannelInfo {
     required this.items,
   });
 
-  String? kind;
-  String? etag;
-  PageInfo? pageInfo;
-  List<Item?> items;
+  String kind;
+  String etag;
+  PageInfo pageInfo;
+  List<Item> items;
 
   factory ChannelInfo.fromJson(Map<String, dynamic> json) => ChannelInfo(
     kind: json["kind"],
@@ -27,8 +29,8 @@ class ChannelInfo {
   Map<String, dynamic> toJson() => {
     "kind": kind,
     "etag": etag,
-    "pageInfo": pageInfo?.toJson(),
-    "items": List<dynamic>.from(items.map((x) => x?.toJson())),
+    "pageInfo": pageInfo.toJson(),
+    "items": List<dynamic>.from(items.map((x) => x.toJson())),
   };
 }
 
@@ -42,12 +44,12 @@ class Item {
     required this.statistics,
   });
 
-  String? kind;
-  String? etag;
-  String? id;
-  Snippet? snippet;
-  ContentDetails? contentDetails;
-  Statistics? statistics;
+  String kind;
+  String etag;
+  String id;
+  Snippet snippet;
+  ContentDetails contentDetails;
+  Statistics statistics;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
     kind: json["kind"],
@@ -62,9 +64,9 @@ class Item {
     "kind": kind,
     "etag": etag,
     "id": id,
-    "snippet": snippet?.toJson(),
-    "contentDetails": contentDetails?.toJson(),
-    "statistics": statistics?.toJson(),
+    "snippet": snippet.toJson(),
+    "contentDetails": contentDetails.toJson(),
+    "statistics": statistics.toJson(),
   };
 }
 
@@ -73,14 +75,14 @@ class ContentDetails {
     required this.relatedPlaylists,
   });
 
-  RelatedPlaylists? relatedPlaylists;
+  RelatedPlaylists relatedPlaylists;
 
   factory ContentDetails.fromJson(Map<String, dynamic> json) => ContentDetails(
     relatedPlaylists: RelatedPlaylists.fromJson(json["relatedPlaylists"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "relatedPlaylists": relatedPlaylists?.toJson(),
+    "relatedPlaylists": relatedPlaylists.toJson(),
   };
 }
 
@@ -90,8 +92,8 @@ class RelatedPlaylists {
     required this.uploads,
   });
 
-  String? likes;
-  String? uploads;
+  String likes;
+  String uploads;
 
   factory RelatedPlaylists.fromJson(Map<String, dynamic> json) => RelatedPlaylists(
     likes: json["likes"],
@@ -115,13 +117,13 @@ class Snippet {
     required this.country,
   });
 
-  String? title;
-  String? description;
-  String? customUrl;
-  DateTime? publishedAt;
-  Thumbnails? thumbnails;
-  Localized? localized;
-  String? country;
+  String title;
+  String description;
+  String customUrl;
+  DateTime publishedAt;
+  Thumbnails thumbnails;
+  Localized localized;
+  String country;
 
   factory Snippet.fromJson(Map<String, dynamic> json) => Snippet(
     title: json["title"],
@@ -137,9 +139,9 @@ class Snippet {
     "title": title,
     "description": description,
     "customUrl": customUrl,
-    "publishedAt": publishedAt?.toIso8601String(),
-    "thumbnails": thumbnails?.toJson(),
-    "localized": localized?.toJson(),
+    "publishedAt": publishedAt.toIso8601String(),
+    "thumbnails": thumbnails.toJson(),
+    "localized": localized.toJson(),
     "country": country,
   };
 }
@@ -150,8 +152,8 @@ class Localized {
     required this.description,
   });
 
-  String? title;
-  String? description;
+  String title;
+  String description;
 
   factory Localized.fromJson(Map<String, dynamic> json) => Localized(
     title: json["title"],
@@ -171,9 +173,9 @@ class Thumbnails {
     required this.high,
   });
 
-  Default? thumbnailsDefault;
-  Default? medium;
-  Default? high;
+  Default thumbnailsDefault;
+  Default medium;
+  Default high;
 
   factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
     thumbnailsDefault: Default.fromJson(json["default"]),
@@ -182,9 +184,9 @@ class Thumbnails {
   );
 
   Map<String, dynamic> toJson() => {
-    "default": thumbnailsDefault?.toJson(),
-    "medium": medium?.toJson(),
-    "high": high?.toJson(),
+    "default": thumbnailsDefault.toJson(),
+    "medium": medium.toJson(),
+    "high": high.toJson(),
   };
 }
 
@@ -195,9 +197,9 @@ class Default {
     required this.height,
   });
 
-  String? url;
-  int? width;
-  int? height;
+  String url;
+  int width;
+  int height;
 
   factory Default.fromJson(Map<String, dynamic> json) => Default(
     url: json["url"],
@@ -220,10 +222,10 @@ class Statistics {
     required this.videoCount,
   });
 
-  String? viewCount;
-  String? subscriberCount;
-  bool? hiddenSubscriberCount;
-  String? videoCount;
+  String viewCount;
+  String subscriberCount;
+  bool hiddenSubscriberCount;
+  String videoCount;
 
   factory Statistics.fromJson(Map<String, dynamic> json) => Statistics(
     viewCount: json["viewCount"],
@@ -246,8 +248,8 @@ class PageInfo {
     required this.resultsPerPage,
   });
 
-  int? totalResults;
-  int? resultsPerPage;
+  int totalResults;
+  int resultsPerPage;
 
   factory PageInfo.fromJson(Map<String, dynamic> json) => PageInfo(
     totalResults: json["totalResults"],
