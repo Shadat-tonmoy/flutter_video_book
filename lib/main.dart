@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:video_book/constants/Styles.dart';
 import 'package:video_book/constants/ConstantValues.dart';
 import 'package:video_book/helpers/CacheHelper.dart';
+import 'package:video_book/helpers/ProviderData.dart';
 import 'package:video_book/screens/aboutApp/AboutAppScreen.dart';
 import 'package:video_book/screens/home/HomeScreen.dart';
 import 'package:video_book/screens/login/LoginScreen.dart';
@@ -22,7 +24,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int themeValue = AppThemes.themeLight;
+  // int themeValue = AppThemes.themeLight;
+
+  // ProviderData providerData = ProviderData();
 
   @override
   void initState() {
@@ -32,23 +36,34 @@ class _MyAppState extends State<MyApp> {
 
   void initFirebase() async {
     FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
-    int themeFromSettings = await CacheHelper().getAppTheme();
-    setState(() {
-      themeValue = themeFromSettings;
-    });
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        initialRoute: "/",
-        routes: {
-          ScreenRoutes.welcomeScreen: (context) => WelcomeScreen(),
-          ScreenRoutes.loginScreen: (context) => const LoginScreen(),
-          ScreenRoutes.homeScreen: (context) => const HomeScreen(),
-          ScreenRoutes.aboutAppScreen: (context) => const AboutAppScreen(),
-        },
-        theme: AppThemes.getThemeFromSettings(themeValue));
+    return MultiProvider(
+        providers: [ChangeNotifierProvider(create: (_) => ProviderData())],
+        child: Consumer<ProviderData>(
+          builder: (BuildContext context, value, Widget? child) {
+            _setAppThemeFromCache(context);
+            return MaterialApp(
+                initialRoute: "/",
+                routes: {
+                  ScreenRoutes.welcomeScreen: (context) => WelcomeScreen(),
+                  ScreenRoutes.loginScreen: (context) => const LoginScreen(),
+                  ScreenRoutes.homeScreen: (context) => const HomeScreen(),
+                  ScreenRoutes.aboutAppScreen: (context) =>
+                      const AboutAppScreen(),
+                },
+                theme: AppThemes.getThemeFromSettings(
+                    context.read<ProviderData>().themeValueFromCache));
+          },
+        ));
+  }
+
+  void _setAppThemeFromCache(BuildContext context) {
+    CacheHelper().getAppTheme().then((value) {
+      context.read<ProviderData>().updateThemeValue(value);
+    });
   }
 }
