@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:video_book/constants/AppStrings.dart';
 import 'package:video_book/constants/Styles.dart';
 import 'package:video_book/helpers/CacheHelper.dart';
 import 'package:video_book/helpers/UIHelper.dart';
-
-import '../../helpers/ProviderData.dart';
 
 class AppThemeOptionBottomSheet extends StatelessWidget {
   AppThemeOptionBottomSheet({Key? key}) : super(key: key);
@@ -43,7 +40,6 @@ class AppThemeOptionBottomSheet extends StatelessWidget {
   }
 
   void _setAppThemeAtCache(int value, BuildContext context) {
-    context.read<ProviderData>().updateThemeValue(value);
     cacheHelper.cacheAppTheme(value).then((value) {
       UIHelper.showToast(AppStrings.themeUpdatedMessage);
       Navigator.pop(context);
