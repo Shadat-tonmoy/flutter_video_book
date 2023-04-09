@@ -14,6 +14,7 @@ class SignedInUserInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final maxWidth = MediaQuery.of(context).size.width * 0.5;
     return Card(
       margin: const EdgeInsets.all(8.0),
       child: Padding(
@@ -34,9 +35,19 @@ class SignedInUserInfoCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(signedInUser?.displayName ?? "",
+                    SizedBox(
+                      width: maxWidth,
+                      child: Text(
+                        signedInUser?.displayName ?? "",
+                        overflow: TextOverflow.fade,
+                        maxLines: 1,
+                        softWrap: false,
                         style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 4),
                     Text(signedInUser?.email ?? ""),
                     const SizedBox(height: 4),

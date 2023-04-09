@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:video_book/constants/AppStrings.dart';
 
-class AboutAppScreen extends StatelessWidget {
+import '../../constants/AppStrings.dart';
+
+class AboutAppScreen extends StatefulWidget {
   const AboutAppScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AboutAppScreen> createState() => _AboutAppScreenState();
+}
+
+class _AboutAppScreenState extends State<AboutAppScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +21,18 @@ class AboutAppScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppStrings.aboutApp),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            SizedBox(
+                width: 100,
+                height: 100,
+                child: Image(
+                  image: AssetImage("assets/images/app_icon.png"),
+                )),
+          ],
+        ),
       ),
     );
   }

@@ -53,6 +53,7 @@ dependencies:
   flutter_expandable_text: ^1.0.0
   flutter_facebook_auth: ^5.0.8
   linkedin_login: ^2.2.1
+  modal_progress_hud_nsn: ^0.4.0
 
 dev_dependencies:
   flutter_test:
