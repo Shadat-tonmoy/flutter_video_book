@@ -37,7 +37,25 @@ class SignedInUserInfoCard extends StatelessWidget {
                     Text(signedInUser?.displayName ?? "",
                         style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
-                    Text(signedInUser?.email ?? "")
+                    const SizedBox(height: 4),
+                    Text(signedInUser?.email ?? ""),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(
+                          signedInUser?.getSignInWithIcon(),
+                          size: 15,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          signedInUser?.getSignInWithMessage() ?? "",
+                        )
+                      ],
+                    )
+                    // ListTile(
+                    //   title: Text(signedInUser?.getSignInWithMessage() ?? ""),
+                    //   leading: Icon(signedInUser?.getSignInWithIcon()),
+                    // )
                   ],
                 )
               ],

@@ -17,6 +17,10 @@ class AppStrings{
   static const dark = "Dark";
   static const setAppTheme = "Dark";
   static const themeUpdatedMessage = "Theme is updated. Please restart the app.";
+  static const signedInWithGoogle = "Signed in with Google";
+  static const signedInWithFacebook = "Signed in with Facebook";
+  static const signedInWithLinkedIn = "Signed in with LinkedIn";
+  static const signedInAnonymously = "Signed in Anonymously";
 
 
 }

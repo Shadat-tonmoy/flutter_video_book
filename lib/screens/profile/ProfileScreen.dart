@@ -17,7 +17,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  ProfileScreenViewModel _viewModel = ProfileScreenViewModel();
+  final ProfileScreenViewModel _viewModel = ProfileScreenViewModel();
 
   @override
   void initState() {
@@ -69,11 +69,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _showThemeOption() {
-    /*showModalBottomSheet(
-        context: context,
-        builder: (context) => const AppThemeOptionBottomSheet(),
-        isScrollControlled: true);*/
-
     showModalBottomSheet(
         context: context,
         builder: (context) {

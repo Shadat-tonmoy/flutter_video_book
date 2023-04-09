@@ -15,7 +15,14 @@ class ProfileScreenViewModel {
   }
 
   Future<OperationResult> signOut() async {
-    var result = await AuthHelper.signOut();
+    var signedInUser = await getSignedInUser();
+    var userType = signedInUser?.userType;
+    var result = false;
+    if (userType == SignedInUserType.loginWithGoogle) {
+      result = await AuthHelper.googleSignOut();
+    } else if (userType == SignedInUserType.loginWithFacebook) {
+      result = await AuthHelper.facebookSignOut();
+    }
     if (result) {
       await cacheHelper.clearSignedInUser();
       await cacheHelper.clearIsSignedIn();

@@ -35,7 +35,7 @@ class _VideoListScreenState extends State<VideoListScreen> {
       body: Column(
         children: [
           if (_videoFetchResult == OperationResult.progress)
-            const VideoListLoadingView()
+            VideoListLoadingView()
           else
             Expanded(
               child: ListView.builder(

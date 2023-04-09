@@ -1,3 +1,9 @@
+import 'package:awesome_icons/awesome_icons.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:video_book/constants/ConstantValues.dart';
+
+import '../constants/AppStrings.dart';
+
 class SignedInUser {
   String userId;
   String displayName;
@@ -28,5 +34,29 @@ class SignedInUser {
         email: json["email"] as String,
         profileImageUrl: json["profileImageUrl"] as String,
         userType: json["userType"] as int);
+  }
+
+  String getSignInWithMessage() {
+    if (userType == SignedInUserType.loginWithGoogle) {
+      return AppStrings.signedInWithGoogle;
+    } else if (userType == SignedInUserType.loginWithFacebook) {
+      return AppStrings.signedInWithFacebook;
+    } else if (userType == SignedInUserType.loginWithLinkedIn) {
+      return AppStrings.signedInWithLinkedIn;
+    } else {
+      return AppStrings.signedInAnonymously;
+    }
+  }
+
+  IconData getSignInWithIcon() {
+    if (userType == SignedInUserType.loginWithGoogle) {
+      return FontAwesomeIcons.google;
+    } else if (userType == SignedInUserType.loginWithFacebook) {
+      return FontAwesomeIcons.facebook;
+    } else if (userType == SignedInUserType.loginWithLinkedIn) {
+      return FontAwesomeIcons.linkedin;
+    } else {
+      return FontAwesomeIcons.user;
+    }
   }
 }

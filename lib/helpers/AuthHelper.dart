@@ -34,7 +34,7 @@ class AuthHelper {
               googleSignInAccount.displayName ?? AppStrings.loggedInUser,
           email: googleSignInAccount.email,
           profileImageUrl: googleSignInAccount.photoUrl ?? "",
-          userType: LoginUserType.loginWithGoogle);
+          userType: SignedInUserType.loginWithGoogle);
       return signedInUser;
     }
     return null;
@@ -88,12 +88,22 @@ class AuthHelper {
     return user;
   }
 
-  static Future<bool> signOut() async {
+  static Future<bool> googleSignOut() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
       await googleSignIn.signOut();
       await FirebaseAuth.instance.signOut();
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  static Future<bool> facebookSignOut() async {
+    try {
+      await FacebookAuth.instance.logOut();
       return true;
     } catch (e) {
       print(e);
@@ -116,7 +126,7 @@ class AuthHelper {
           displayName: name,
           email: email,
           profileImageUrl: photoUrl,
-          userType: LoginUserType.loginWithFacebook);
+          userType: SignedInUserType.loginWithFacebook);
       cacheHelper.cacheIsSignedIn(true);
       cacheHelper.cacheSignedInUser(signedInUser);
       return OperationResult.success;

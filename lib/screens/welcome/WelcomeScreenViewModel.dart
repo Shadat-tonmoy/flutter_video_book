@@ -13,7 +13,7 @@ class WelcomeScreenViewModel {
     SignedInUser? signedInUser = await cacheHelper.getSignedInUser();
     if (isSignedIn) {
       int signedInUserType = signedInUser?.userType ?? -1;
-      if (signedInUserType == LoginUserType.loginWithFacebook) {
+      if (signedInUserType == SignedInUserType.loginWithFacebook) {
         AccessToken? accessToken = await FacebookAuth.instance.accessToken;
         if (accessToken != null) {
           return true;
