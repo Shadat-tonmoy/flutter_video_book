@@ -1,4 +1,4 @@
-class AppStrings{
+class AppStrings {
   static const loginWithGoogle = "Login with Google";
   static const loginWithFacebook = "Login with Facebook";
   static const loginWithLinkedIn = "Login with LinkedIn";
@@ -16,13 +16,11 @@ class AppStrings{
   static const light = "Light";
   static const dark = "Dark";
   static const setAppTheme = "Dark";
-  static const themeUpdatedMessage = "Theme is updated. Please restart the app.";
+  static const themeUpdatedMessage = "Theme is updated.";
   static const signedInWithGoogle = "Signed in with Google";
   static const signedInWithFacebook = "Signed in with Facebook";
   static const signedInWithLinkedIn = "Signed in with LinkedIn";
   static const signedInAnonymously = "Signed in Anonymously";
   static const appDevBy = "Developed by\nShadat Tonmoy";
   static const appCodeLabel = "App Source Code. (Hosted in GitHub)";
-
-
 }
