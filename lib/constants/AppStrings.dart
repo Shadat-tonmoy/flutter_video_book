@@ -23,6 +23,6 @@ class AppStrings{
   static const signedInAnonymously = "Signed in Anonymously";
   static const appDevBy = "Developed by\nShadat Tonmoy";
   static const appCodeLabel = "App Source Code. (Hosted in GitHub)";
-
-
+  static const fetchingCommentList = "Fetching comment list...";
+  static const noCommentFound = "No comments found";
 }
