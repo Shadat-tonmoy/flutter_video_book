@@ -21,6 +21,8 @@ class AppStrings{
   static const signedInWithFacebook = "Signed in with Facebook";
   static const signedInWithLinkedIn = "Signed in with LinkedIn";
   static const signedInAnonymously = "Signed in Anonymously";
+  static const appDevBy = "Developed by\nShadat Tonmoy";
+  static const appCodeLabel = "App Source Code. (Hosted in GitHub)";
 
 
 }
