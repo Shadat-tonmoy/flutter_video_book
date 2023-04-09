@@ -53,6 +53,6 @@ class CacheHelper {
 
   Future<int> getAppTheme() async {
     final pref = await _sharedPref;
-    return pref.getInt(Tags.appThemeKey) ?? AppThemes.themeDark;
+    return pref.getInt(Tags.appThemeKey) ?? AppThemes.themeLight;
   }
 }

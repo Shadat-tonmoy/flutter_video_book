@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_book/constants/AppStrings.dart';
+import 'package:video_book/helpers/Extensions.dart';
 
 import '../constants/Styles.dart';
 
@@ -26,7 +27,6 @@ class VideoCommentBox extends StatelessWidget {
                 _message = value;
               },
               decoration: messageTextFieldDecoration,
-              style: TextStyle(color: themeData.colorScheme.onPrimary),
             ),
           ),
           MaterialButton(

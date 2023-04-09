@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_text/flutter_expandable_text.dart';
 import 'package:video_book/constants/ConstantValues.dart';
+import 'package:video_book/helpers/Extensions.dart';
 import 'package:video_book/helpers/UIHelper.dart';
 import 'package:video_book/models/CommentModel.dart';
 
@@ -56,7 +57,7 @@ class CommentView extends StatelessWidget {
                   comment.commentText,
                   trim: 100,
                   trimType: TrimType.characters,
-                  style: TextStyle(color: ThemeData().colorScheme.onPrimary),
+                  style: TextStyle(color: Colors.black87)
                 ),
               ),
             ],
