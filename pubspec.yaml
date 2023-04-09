@@ -55,6 +55,7 @@ dependencies:
   linkedin_login: ^2.2.1
   modal_progress_hud_nsn: ^0.4.0
   provider: ^6.0.5
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_test:
