@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:video_book/constants/AppStrings.dart';
 import 'package:video_book/helpers/CacheHelper.dart';
@@ -95,5 +96,18 @@ class AuthHelper {
       print(e);
       return false;
     }
+  }
+
+  static Future<bool> loginWithFacebook() async {
+    LoginResult loginResult = await FacebookAuth.instance
+        .login(permissions: ["public-profile", "email"]);
+
+    print("LoginWithFacebook. loginResult : $loginResult");
+
+    var userData = await FacebookAuth.instance.getUserData();
+
+    print("LoginWithFacebook. user data : $userData");
+
+    return true;
   }
 }

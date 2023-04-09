@@ -64,7 +64,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void _loginWithFacebookCallback() {}
+  void _loginWithFacebookCallback() {
+    AuthHelper.loginWithFacebook();
+  }
 
   void _loginWithLinkedInCallback() {}
 }
