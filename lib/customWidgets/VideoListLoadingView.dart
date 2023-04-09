@@ -11,7 +11,7 @@ class VideoListLoadingView extends StatelessWidget {
     return Expanded(
         child: Shimmer.fromColors(
             baseColor: _getShimmerBaseColor(context),
-            highlightColor: _getShimmerBaseColor(context),
+            highlightColor: _getShimmerHighlightColor(context),
             child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
