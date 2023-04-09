@@ -1,16 +1,19 @@
 # video_book
 
-A new Flutter project.
+Video Book - Simple Flutter Project with Youtube API and Firebase.
 
-## Getting Started
+## App Preview
 
-This project is a starting point for a Flutter application.
+![Alt text](/screen_shots/app_ss.png?raw=true "Optional Title")
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Fetch video from specific channel (Amazon Prime India) using Youtube API.
+- Play video 
+- Comment under the video.
+- Read comments by any user. 
+- Login with Google, Facebook and LinkedIn
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
