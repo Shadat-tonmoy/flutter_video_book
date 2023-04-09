@@ -26,5 +26,3 @@ class AppStrings{
   static const fetchingCommentList = "Fetching comment list...";
   static const noCommentFound = "No comments found";
 }
-
-}

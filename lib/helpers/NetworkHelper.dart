@@ -41,7 +41,7 @@ class NetworkHelper {
     Map<String, String> parameters = {
       'part': 'snippet',
       'playlistId': playlistId,
-      'maxResults': '20',
+      'maxResults': '50',
       'pageToken': pageToken,
       'key': Keys.youtubeAPIKey
     };
