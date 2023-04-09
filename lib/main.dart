@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:video_book/constants/Styles.dart';
 import 'package:video_book/constants/ConstantValues.dart';
 import 'package:video_book/helpers/CacheHelper.dart';
+import 'package:video_book/screens/aboutApp/AboutAppScreen.dart';
 import 'package:video_book/screens/home/HomeScreen.dart';
 import 'package:video_book/screens/login/LoginScreen.dart';
 import 'package:video_book/screens/welcome/WelomeScreen.dart';
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
           ScreenRoutes.welcomeScreen: (context) => WelcomeScreen(),
           ScreenRoutes.loginScreen: (context) => const LoginScreen(),
           ScreenRoutes.homeScreen: (context) => const HomeScreen(),
+          ScreenRoutes.aboutAppScreen: (context) => const AboutAppScreen(),
         },
         theme: AppThemes.getThemeFromSettings(themeValue));
   }

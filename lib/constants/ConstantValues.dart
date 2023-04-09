@@ -2,6 +2,7 @@ class ScreenRoutes {
   static const String welcomeScreen = "/";
   static const String loginScreen = "/login";
   static const String homeScreen = "/home";
+  static const String aboutAppScreen = "/aboutApp";
 }
 
 class Tags {
@@ -25,7 +26,7 @@ class CommentDBPath {
   static const String commentTimeRoot = "commentTime";
 }
 
-class Consts{
+class Consts {
   static const int userNameLength = 16;
 }
 

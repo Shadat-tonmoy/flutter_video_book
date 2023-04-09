@@ -15,9 +15,17 @@ class WelcomeScreen extends StatelessWidget {
       _moveToNextScreen(context);
     });
     return Scaffold(
-        body: Column(children: [
-      FlutterLogo(size: MediaQuery.of(context).size.height),
-    ]));
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+          Center(
+            child: CircleAvatar(
+              backgroundImage: AssetImage("assets/images/app_icon.png"),
+              radius: 80,
+            ),
+          )
+        ]));
   }
 
   void _moveToNextScreen(BuildContext context) {

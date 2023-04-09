@@ -28,24 +28,35 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              LoginOptionButton(
-                  color: AppColors.googleColor,
-                  text: AppStrings.loginWithGoogle,
-                  icon: FontAwesomeIcons.google,
-                  onPressedCallback: () => _loginWithGoogleCallback(context)),
-              LoginOptionButton(
-                  color: AppColors.facebookColor,
-                  text: AppStrings.loginWithFacebook,
-                  icon: FontAwesomeIcons.facebookSquare,
-                  onPressedCallback: _loginWithFacebookCallback),
-              LoginOptionButton(
-                  color: AppColors.linkedInColor,
-                  text: AppStrings.loginWithLinkedIn,
-                  icon: FontAwesomeIcons.linkedin,
-                  onPressedCallback: _loginWithLinkedInCallback),
+              const Center(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/app_icon.png"),
+                  radius: 50,
+                ),
+              ),
+              Column(
+                children: [
+                  LoginOptionButton(
+                      color: AppColors.googleColor,
+                      text: AppStrings.loginWithGoogle,
+                      icon: FontAwesomeIcons.google,
+                      onPressedCallback: () =>
+                          _loginWithGoogleCallback(context)),
+                  LoginOptionButton(
+                      color: AppColors.facebookColor,
+                      text: AppStrings.loginWithFacebook,
+                      icon: FontAwesomeIcons.facebookSquare,
+                      onPressedCallback: _loginWithFacebookCallback),
+                  LoginOptionButton(
+                      color: AppColors.linkedInColor,
+                      text: AppStrings.loginWithLinkedIn,
+                      icon: FontAwesomeIcons.linkedin,
+                      onPressedCallback: _loginWithLinkedInCallback),
+                ],
+              ),
             ],
           ),
         ),

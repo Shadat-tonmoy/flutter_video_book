@@ -58,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ProfileOptionView(
                       title: AppStrings.aboutApp,
                       iconData: FontAwesomeIcons.infoCircle,
-                      optionClickListener: () => {})
+                      optionClickListener: () => {_openAboutAppScreen()})
                 ],
               ),
             ),
@@ -74,6 +74,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         builder: (context) {
           return AppThemeOptionBottomSheet();
         });
+  }
+
+  void _openAboutAppScreen() {
+    Navigator.pushNamed(context, ScreenRoutes.aboutAppScreen);
   }
 
   void _signOut() {
