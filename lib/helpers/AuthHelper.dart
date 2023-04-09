@@ -111,6 +111,17 @@ class AuthHelper {
     }
   }
 
+  static Future<bool> linkedInSignOut() async {
+    try {
+      await cacheHelper.clearIsSignedIn();
+      await cacheHelper.clearSignedInUser();
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   static Future<OperationResult> loginWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance.login();
     if (result.status == LoginStatus.success) {

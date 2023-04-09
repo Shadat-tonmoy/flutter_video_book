@@ -22,6 +22,8 @@ class ProfileScreenViewModel {
       result = await AuthHelper.googleSignOut();
     } else if (userType == SignedInUserType.loginWithFacebook) {
       result = await AuthHelper.facebookSignOut();
+    } else if (userType == SignedInUserType.loginWithLinkedIn) {
+      await AuthHelper.linkedInSignOut();
     }
     if (result) {
       await cacheHelper.clearSignedInUser();
