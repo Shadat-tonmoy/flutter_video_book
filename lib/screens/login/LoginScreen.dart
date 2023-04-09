@@ -6,7 +6,9 @@ import 'package:linkedin_login/linkedin_login.dart';
 import 'package:video_book/constants/AppColors.dart';
 import 'package:video_book/constants/AppStrings.dart';
 import 'package:video_book/customWidgets/LoginOptionButton.dart';
+import 'package:video_book/screens/loginWithLinkedIn/LoginWithLinkedInScreen.dart';
 import 'package:video_book/helpers/AuthHelper.dart';
+import 'package:video_book/models/AuthModels.dart';
 
 import '../../constants/ConstantValues.dart';
 import '../../helpers/UIHelper.dart';
@@ -74,11 +76,26 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _loginWithLinkedInCallback() {
-    AuthHelper.loginWithLinkedIn();
+    _openLinkedInLoginPage();
   }
 
   void _moveToHomeScreen() {
     UIHelper.showToast(AppStrings.signInSuccess);
     Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
+  }
+
+  void _openLinkedInLoginPage() async {
+    SignedInUser? signedInUser = await Navigator.push(
+      context,
+      MaterialPageRoute<SignedInUser>(
+        builder: (final BuildContext context) => LoginWithLinkedInScreen(),
+        fullscreenDialog: true,
+      ),
+    );
+
+    if (signedInUser != null) {
+      bool result = await AuthHelper.cacheLinkedInUserInfo(signedInUser);
+      _moveToHomeScreen();
+    }
   }
 }

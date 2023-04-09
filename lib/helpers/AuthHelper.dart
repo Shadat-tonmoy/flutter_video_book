@@ -137,19 +137,9 @@ class AuthHelper {
     }
   }
 
-  static Future<void> loginWithLinkedIn() async {
-    LinkedInUserWidget(
-      redirectUrl: "https://www.youtube.com",
-      clientId: "868rr77oec6tsp",
-      clientSecret: "WCt7PgKd4sJ7U8DP",
-      onGetUserProfile: (UserSucceededAction linkedInUser) {
-        print('Access token ${linkedInUser.user.token.accessToken}');
-        print('First name: ${linkedInUser.user.firstName?.localized?.label}');
-        print('Last name: ${linkedInUser.user.lastName?.localized?.label}');
-      },
-      onError: (UserFailedAction e) {
-        print('Error: ${e.toString()}');
-      },
-    );
+  static Future<bool> cacheLinkedInUserInfo(SignedInUser signedInUser) async {
+    await cacheHelper.cacheIsSignedIn(true);
+    await cacheHelper.cacheSignedInUser(signedInUser);
+    return true;
   }
 }
