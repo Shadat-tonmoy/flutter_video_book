@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/constants/ConstantValues.dart';
 import 'package:video_book/customWidgets/ChannelInfoView.dart';
 import 'package:video_book/customWidgets/VideoItemVIew.dart';
 import 'package:video_book/customWidgets/VideoListLoadingView.dart';

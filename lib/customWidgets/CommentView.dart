@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_text/flutter_expandable_text.dart';
-import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/constants/ConstantValues.dart';
 import 'package:video_book/helpers/UIHelper.dart';
 import 'package:video_book/models/CommentModel.dart';
 

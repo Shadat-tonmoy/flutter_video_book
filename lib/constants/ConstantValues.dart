@@ -28,3 +28,9 @@ class CommentDBPath {
 class Consts{
   static const int userNameLength = 16;
 }
+
+class LoginUserType {
+  static const int loginWithGoogle = 1;
+  static const int loginWithFacebook = 2;
+  static const int loginWithLinkedIn = 3;
+}

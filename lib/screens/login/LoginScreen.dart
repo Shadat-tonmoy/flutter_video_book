@@ -2,12 +2,13 @@ import 'package:awesome_icons/awesome_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:linkedin_login/linkedin_login.dart';
 import 'package:video_book/constants/AppColors.dart';
 import 'package:video_book/constants/AppStrings.dart';
 import 'package:video_book/customWidgets/LoginOptionButton.dart';
 import 'package:video_book/helpers/AuthHelper.dart';
 
-import '../../constants/constant_values.dart';
+import '../../constants/ConstantValues.dart';
 import '../../helpers/UIHelper.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: AppColors.linkedInColor,
                   text: AppStrings.loginWithLinkedIn,
                   icon: FontAwesomeIcons.linkedin,
-                  onPressedCallback: _loginWithLinkedInCallback)
+                  onPressedCallback: _loginWithLinkedInCallback),
             ],
           ),
         ),
@@ -52,21 +53,33 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _loginWithGoogleCallback(BuildContext context) async {
-    FirebaseApp firebaseApp = await AuthHelper.initializeFirebase();
-
-    User? user = await AuthHelper.signInWithGoogle();
-
-    if (user != null) {
-      Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
-      UIHelper.showToast(AppStrings.signInSuccess);
-    } else {
-      UIHelper.showToast(AppStrings.signInFailed);
-    }
+    AuthHelper.initializeFirebase().then((value) {
+      AuthHelper.signInWithGoogle().then((user) {
+        if (user != null) {
+          _moveToHomeScreen();
+        } else {
+          UIHelper.showToast(AppStrings.signInFailed);
+        }
+      });
+    });
   }
 
   void _loginWithFacebookCallback() {
-    AuthHelper.loginWithFacebook();
+    AuthHelper.loginWithFacebook().then((result) {
+      if (result == OperationResult.success) {
+        _moveToHomeScreen();
+      } else {
+        UIHelper.showToast(AppStrings.signInFailed);
+      }
+    });
   }
 
-  void _loginWithLinkedInCallback() {}
+  void _loginWithLinkedInCallback() {
+    AuthHelper.loginWithLinkedIn();
+  }
+
+  void _moveToHomeScreen() {
+    UIHelper.showToast(AppStrings.signInSuccess);
+    Navigator.pushReplacementNamed(context, ScreenRoutes.homeScreen);
+  }
 }

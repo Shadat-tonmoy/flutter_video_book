@@ -1,4 +1,4 @@
-import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/constants/ConstantValues.dart';
 
 import '../../helpers/NetworkHelper.dart';
 import '../../helpers/UIHelper.dart';

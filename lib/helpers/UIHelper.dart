@@ -1,7 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:video_book/models/YoutubeChannelInfo.dart';
 
-import '../constants/constant_values.dart';
+import '../constants/ConstantValues.dart';
 import '../models/YoutubePlaylistInfo.dart';
 import 'package:intl/intl.dart';
 

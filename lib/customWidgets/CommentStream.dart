@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_book/customWidgets/CommentView.dart';
 import 'package:video_book/models/CommentModel.dart';
 
-import '../constants/constant_values.dart';
+import '../constants/ConstantValues.dart';
 
 class CommentStream extends StatelessWidget {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;

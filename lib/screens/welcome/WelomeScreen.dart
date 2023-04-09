@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/constants/ConstantValues.dart';
 import 'package:video_book/screens/welcome/WelcomeScreenViewModel.dart';
 
 class WelcomeScreen extends StatelessWidget {

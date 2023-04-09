@@ -1,7 +1,7 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:video_book/constants/AppStrings.dart';
-import 'package:video_book/constants/constant_values.dart';
+import 'package:video_book/constants/ConstantValues.dart';
 import 'package:video_book/customWidgets/ProfileOptionView.dart';
 import 'package:video_book/customWidgets/SignedInUserInfoView.dart';
 import 'package:video_book/helpers/UIHelper.dart';
